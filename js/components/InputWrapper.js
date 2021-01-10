@@ -1,7 +1,7 @@
 import validateEmail from '../utils.js'
 const $template = document.createElement('template');
 $template.innerHTML=/*html*/ `
-    <link rel="stylesheet" href="./css/input-wrapper.css">
+    <link rel="stylesheet" href="../css/input-wrapper.css">
     <div id="input-wrapper">
         <label id="input-label" for="#input-main">Ten Dang Ki</label>
         <input id="input-main" type='text'>

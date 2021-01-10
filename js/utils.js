@@ -14,3 +14,8 @@ export function getDataFromDocs(docs,excepts=[]){
         return getDataFromDoc(doc, excepts)
     })
 }
+
+export async function getDataFromFirebase() {
+    let filmData = await firebase.firestore().collection("FilmData").get();
+    return filmData.docs;
+  }

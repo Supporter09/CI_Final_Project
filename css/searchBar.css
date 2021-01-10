@@ -1,0 +1,25 @@
+*{
+    background-color: #1C1C24;
+}
+
+.form-group{
+    border-radius: 10px;
+}
+
+#search-bar{
+    width: 20vw;
+    height: 100vh;
+    border-radius: 10px;
+}
+
+#label-search{
+    margin-top: 20px;
+    padding-left: 10px;
+    font-size: 24px;
+    overflow: hidden;
+}
+
+#search-input{
+    margin: auto;
+    width: 18vw;
+}
