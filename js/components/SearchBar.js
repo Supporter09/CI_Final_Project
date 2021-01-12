@@ -38,7 +38,7 @@ export default class SearchBar extends HTMLElement {
   }
 
   set onSearchFilm(callback){
-    this.$form.oninput = (event) => {
+    this.$form.onsubmit = (event) => {
       event.preventDefault();
       callback(this.$searchInput.value);
     }
