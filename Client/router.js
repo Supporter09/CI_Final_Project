@@ -32,6 +32,7 @@ router
 router.on("/films", function () {
   document.getElementById("app").innerHTML =
     "<films-component></films-component>";
+    console.log('Bạn đang ở trang phim');
 });
 
 window.router = router;
