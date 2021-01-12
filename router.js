@@ -6,9 +6,9 @@ var hash = '#!'; // Defaults to: '#'
 var router = new Navigo(root, useHash, hash);
 
 router
-  .on('/chat' ,function () {
+  .on('/' ,function () {
     // show home page here
-    document.getElementById('app').innerHTML ="<h1>Wellcome to film world</h1>";
+    document.getElementById('app').innerHTML ="<container-box></container-box>";
   })
   .resolve();
 
