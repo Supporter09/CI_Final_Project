@@ -3,14 +3,14 @@ $templateNavbar.innerHTML = /*html */ `
   <link rel="stylesheet" href="./css/navbar.css"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <nav class="navbar navbar-expand-md fixed-top">
-    <a class="navbar-brand" href="#">Netflix</i></a>
+    <a class="navbar-brand" href="#!/">Netflix</i></a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a href="#" class="nav-link">About</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">Films</a>
+          <a href="#!/films" class="nav-link">Films</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">Ranking</a>
