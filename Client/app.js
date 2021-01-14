@@ -23,4 +23,5 @@ import AvatarWrapper from "./js/components/AvatarWrapper.js";
 import RecommendItem from "./js/components/RecommendItem.js";
 import RecommendContainer from "./js/components/RecommendContainer.js";
 import UserProfile from "./js/components/UserProfile.js";
+import LiveFilm from "./js/components/LiveFilm.js"
 
