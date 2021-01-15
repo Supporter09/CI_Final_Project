@@ -41,11 +41,12 @@ export default class FilmContainer extends HTMLElement {
 
    connectedCallback() {
     this.$card.onclick = () => {
-      console.log(this.$filmName.innerHTML);
-      let result =  firebase.firestore().collection('FilmData').where('name', '==', '').get();
-      console.log(result);
-      let realdata = getDataFromDocs(result.docs);
-      console.log(realdata);
+      let name = this.$filmName.innerHTML;
+      localStorage.setItem('name', name);
+      // let result =  firebase.firestore().collection('FilmData').where('name', '==', '').get();
+      // console.log(result);
+      // let realdata = getDataFromDocs(result.docs);
+      // console.log(realdata);
       window.location.href="#!/livefilm";
     }
   }

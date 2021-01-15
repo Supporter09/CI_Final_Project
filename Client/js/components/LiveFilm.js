@@ -1,5 +1,7 @@
 import Navbar from "./Navbar.js"
+import Footer from "./Footer.js"
 import RecommendContainer from "./RecommendContainer.js"
+import {getDataFromDoc, getDataFromDocs} from "../../js/utils.js";
 
 const $template = document.createElement('template');
 $template.innerHTML= /*html*/ `
@@ -10,7 +12,7 @@ $template.innerHTML= /*html*/ `
     <navbar-filter></navbar-filter>
     <div class="row">
         <div class="col-lg-10">
-            <iframe src="https://drive.google.com/file/d/1E5scjDKa-ztPgfGT7sm7ZtwmIEf0AWRi/preview" width="100%" height="66%"></iframe>
+            <iframe id="film" src="" width="100%" height="66%"></iframe>
         </div>
         <div class="col-lg-2">
             <div>
@@ -19,6 +21,7 @@ $template.innerHTML= /*html*/ `
             <recommend-container></recommend-container>
         </div>
     </div>
+    <footer-div></footer-div>
     `;
 
 export default class LiveFilm extends HTMLElement {
@@ -27,6 +30,16 @@ export default class LiveFilm extends HTMLElement {
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild($template.content.cloneNode(true));
     }
+async connectedCallback() {
+    let name = localStorage.getItem('name');
+    console.log(name);
+    let result =  await firebase.firestore().collection('FilmData').where('name', '==', name).get();
+    let realdata = getDataFromDocs(result.docs);
+    this.$film = this.shadowRoot.getElementById('film');
+    this.$film.src = realdata[0].film_url;
+    console.log(realdata[0].film_url);
+    console.log(this.$film.src);
+}
 }
 
 window.customElements.define('live-film', LiveFilm);
