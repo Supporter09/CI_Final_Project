@@ -35,4 +35,17 @@ router.on("/films", function () {
     console.log('Bạn đang ở trang phim');
 });
 
+router.on("/profile", function () {
+  document.getElementById("app").innerHTML =
+    "<user-profile></user-profile>";
+    console.log('Bạn đang ở trang thông tin cá nhân');
+});
+
+router.on("/livefilm", function () {
+  document.getElementById("app").innerHTML =
+    "<live-film></live-film>";
+    console.log('Bạn đang ở trang xem phim');
+});
+
+
 window.router = router;

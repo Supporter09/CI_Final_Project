@@ -1,3 +1,4 @@
+import {getDataFromDoc, getDataFromDocs} from "../../js/utils.js";
 const $template = document.createElement("template");
 
 $template.innerHTML = /*html*/ `\
@@ -21,7 +22,7 @@ export default class FilmContainer extends HTMLElement {
     this.$Image = this.shadowRoot.querySelector(".card-img-top");
     this.$filmName = this.shadowRoot.querySelector(".card-title");
     this.$dayRelase = this.shadowRoot.querySelector(".card-text");
-
+    this.$card = this.shadowRoot.querySelector('.card');
     this.setAttribute("data", JSON.stringify(data));
   }
 
@@ -35,6 +36,18 @@ export default class FilmContainer extends HTMLElement {
       this.$Image.src = $filmInfo.img;
       this.$filmName.innerHTML = $filmInfo.name;
       this.$dayRelase.innerHTML = $filmInfo.birth_details;
+    }
+  }
+
+   connectedCallback() {
+    this.$card.onclick = () => {
+      let name = this.$filmName.innerHTML;
+      localStorage.setItem('name', name);
+      // let result =  firebase.firestore().collection('FilmData').where('name', '==', '').get();
+      // console.log(result);
+      // let realdata = getDataFromDocs(result.docs);
+      // console.log(realdata);
+      window.location.href="#!/livefilm";
     }
   }
 
