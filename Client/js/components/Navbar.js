@@ -21,10 +21,11 @@ $templateNavbar.innerHTML = /*html */ `
         <li class="nav-item">
           <a href="#" class="nav-link">More</a>
         </li>
-        <button type="button" id="login-btn" class="btn btn-outline-light btn-sm">Login</button>
+        <button type="button" id="login-btn" class="btn btn-outline-light btn-sm" ><a href="#!/sign-in" style="text-decoration: none;">Login</a></button>
       </ul>
     </div>
   </nav>
+ 
 `;
 
 //* shadowDOM
@@ -33,7 +34,9 @@ export default class NavbarOnTop extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild($templateNavbar.content.cloneNode(true));
+    this.$sign_in_btn = this.shadowRoot.getElementById("login-btn");
   }
+
 }
 
 window.customElements.define("navbar-filter", NavbarOnTop);

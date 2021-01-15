@@ -1,36 +1,37 @@
 import validateEmail from '../utils.js'
 import InputWrapper from "./InputWrapper.js";
-
+import NavbarFilter from "./Navbar.js"
+import FooterDiv from "./Footer.js"
 const $template = document.createElement('template');
 // <-- Khi submit thi chuyen den duong dan trong attr action cua form -->
 $template.innerHTML = /*html*/ `
 <!--===============================================================================================-->	
-<link rel="icon" type="image/png" href="../../img/icons/favicon.ico"/>
+<link rel="icon" type="image/png" href="./img/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../../vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="./vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../css/login-form-util.css">
-	<link rel="stylesheet" type="text/css" href="../../css/login-from-main.css">
+	<link rel="stylesheet" type="text/css" href="./css/login-form-util.css">
+	<link rel="stylesheet" type="text/css" href="./css/login-from-main.css">
 <!--===============================================================================================-->
     
     <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="login100-pic js-tilt" data-tilt>
-					<img src="../../img/img-01.png" alt="IMG">
+					<img src="./img/img-01.png" alt="IMG">
 				</div>
 
 				<form class="login100-form validate-form" id='login-form'>
 					<span class="login100-form-title">
-						Member Login
+						Sign In
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -76,14 +77,14 @@ $template.innerHTML = /*html*/ `
 	</div>
 
 <!--===============================================================================================-->	
-<script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
+<script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../../vendor/bootstrap/js/popper.js"></script>
-	<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="./vendor/bootstrap/js/popper.js"></script>
+	<script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../../vendor/select2/select2.min.js"></script>
+	<script src="./vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../../vendor/tilt/tilt.jquery.min.js"></script>
+	<script src="./vendor/tilt/tilt.jquery.min.js"></script>
 	<script >
 		$('.js-tilt').tilt({
 			scale: 1.1

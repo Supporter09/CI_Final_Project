@@ -36,12 +36,12 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
+	font: 'San Francisco', Helvetica, Arial, san-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
+	font: 'San Francisco', Helvetica, Arial, san-serif;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -67,7 +67,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Poppins-Regular;
+	font: 'San Francisco', Helvetica, Arial, san-serif;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -134,14 +134,14 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Poppins-Regular;
+  font: 'San Francisco', Helvetica, Arial, san-serif;
   font-size: 13px;
   line-height: 1.5;
   color: #999999;
 }
 
 .txt2 {
-  font-family: Poppins-Regular;
+  font: 'San Francisco', Helvetica, Arial, san-serif;
   font-size: 13px;
   line-height: 1.5;
   color: #666666;
@@ -168,16 +168,16 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #9053c7;
+  /* background: #9053c7;
   background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
   background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
   background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
-  background: linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #c850c0, #4158d0); */
 }
 
 .wrap-login100 {
   width: 960px;
-  background: #fff;
+  background: #1C1C24;
   border-radius: 10px;
   overflow: hidden;
 
@@ -205,13 +205,13 @@ iframe {
 /*------------------------------------------------------------------
 [  ]*/
 .login100-form {
-  width: 290px;
+  width: 380px;
 }
 
 .login100-form-title {
-  font-family: Poppins-Bold;
+  font: 'San Francisco', Helvetica, Arial, san-serif;
   font-size: 24px;
-  color: #333333;
+  color: #FFFFFF;
   line-height: 1.2;
   text-align: center;
 
@@ -230,16 +230,16 @@ iframe {
 }
 
 .input100 {
-  font-family: Poppins-Medium;
+  font: 'San Francisco', Helvetica, Arial, san-serif;
   font-size: 15px;
   line-height: 1.5;
-  color: #666666;
+  color: #fff;
 
   display: block;
   width: 100%;
-  background: #e6e6e6;
+  background: #2D2D3A;
   height: 50px;
-  border-radius: 25px;
+  border-radius: 15px;
   padding: 0 30px 0 68px;
 }
 
@@ -256,7 +256,7 @@ iframe {
   width: 100%;
   height: 100%;
   box-shadow: 0px 0px 0px 0px;
-  color: rgba(87,184,70, 0.8);
+  color:#4447E2;
 }
 
 .input100:focus + .focus-input100 {
@@ -304,7 +304,7 @@ iframe {
 }
 
 .input100:focus + .focus-input100 + .symbol-input100 {
-  color: #57b846;
+  color: #4447E2;
   padding-left: 28px;
 }
 
@@ -323,16 +323,17 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Montserrat-Bold;
+  font: 'San Francisco', Helvetica, Arial, san-serif;
   font-size: 15px;
   line-height: 1.5;
   color: #fff;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 
   width: 100%;
   height: 50px;
-  border-radius: 25px;
-  background: #57b846;
+  border-radius: 15px;
+  border: 2px solid #4447E2;
+  background:#1C1C24;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
