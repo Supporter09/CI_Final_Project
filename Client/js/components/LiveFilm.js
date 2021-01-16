@@ -5,23 +5,22 @@ import { getDataFromDoc, getDataFromDocs } from "../../js/utils.js";
 
 const $template = document.createElement("template");
 $template.innerHTML = /*html*/ `
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="./css/liveFilm.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <navbar-filter></navbar-filter>
-    <div class="row">
-        <div class="col-lg-10">
-            <iframe id="film" src="" width="100%" height="66%"></iframe>
-        </div>
-        <div class="col-lg-2">
-            <div>
-                <h3 style="color: rgb(255,255,255);">Recommend</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9" style="height: 80vh;">
+                <iframe id="film" src="" width="100%" height="100%"></iframe>
             </div>
-            <recommend-container></recommend-container>
+            <div class="col-lg-3">
+                <div>
+                    <h3 style="color: rgb(255,255,255);">Recommend</h3>
+                </div>
+                <recommend-container></recommend-container>
+            </div>
         </div>
     </div>
-    <footer-div></footer-div>
     `;
 
 export default class LiveFilm extends HTMLElement {
