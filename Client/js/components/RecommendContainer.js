@@ -23,17 +23,18 @@ export default class RecommendContainer extends HTMLElement {
     let dataFilm = await getDataFromFirebase();
     dataFilm = getDataFromDocs(dataFilm);
     console.log(dataFilm);
-    let maxRating = 150;
     let check = [];
-    check[0] = 0;
+    check[0] = 150;
     for(let i = 0 ; i < 3; i++){
         let pos = 0;
+        let minRating = 0;
         for(let j = 0; j < dataFilm.length; i++){
-            if(dataFilm[j].rating > check[i] && dataFilm[j].rating < maxRating){
+            if(dataFilm[j].rating < check[i] && dataFilm[j].rating > minRating){
                 pos = j;
+                minRating = dataFilm[j].rating;
             }
         }
-        maxRating = dataFilm[pos].rating;
+        check[i+1] = dataFilm[pos].rating;
         console.log(maxRating);
     }
   }
