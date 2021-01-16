@@ -9,10 +9,21 @@
 .card {
     height: 247px;
     width: 268px;
-    margin: 10px 10px;
+    margin: 20px 10px;
     background-color: #1C1C24 !important;
     padding-top: 10px;
     border-radius: 10px !important;
+}
+
+.card:hover {
+    height: 247px;
+    width: 268px;
+    margin: 25px 15px;
+    transition: margin 1s;
+    background-color: #1C1C24 !important;
+    padding-top: 10px;
+    border-radius: 10px !important;
+    opacity: 0.9;
 }
 
 .card-img-top{
