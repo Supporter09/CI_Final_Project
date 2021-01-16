@@ -45,7 +45,7 @@ export default class FilmListSearch extends HTMLElement {
         console.log(newValue);
         let filmData = await getDataFromFirebase();
         for(let film of filmData){
-          if(getDataFromDoc(film).name.toLowerCase() == newValue.toLowerCase()){
+          if(getDataFromDoc(film).name.toLowerCase().includes(newValue.toLowerCase())){
             let $film = new FilmContainer(getDataFromDoc(film));
             this.$filmListSearch.appendChild($film);
           }
