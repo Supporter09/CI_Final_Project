@@ -12,37 +12,30 @@ $template.innerHTML= /*html*/ `
         <div>
             <h3 id="film-name">Frozen</h3>
         </div>
-        <div>
-            <h5 id="film-date" >Dec 20, 2020</h5>
-        </div>
     </div>
 `;
 
 export default class RecommendItem extends HTMLElement {
-    constructor() {
+    constructor(recommendedFilmData) {
         super();
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild($template.content.cloneNode(true));
         this.$filmImage = this.shadowRoot.getElementById('film-image');
         this.$filmName = this.shadowRoot.getElementById('film-name');
-        this.$filmDate = this.shadowRoot.getElementById('film-date');
+
+        this.setAttribute('recommendedFilm', recommendedFilmData);
     }
 
     static get observedAttributes () {
-        return ['image', 'name', 'date'];
+        return ['recommendedFilm'];
     }
 
     attributeChangedCallback(attrName, oldValue, newValue) {
-        switch(attrName) {
-            case 'image':
-                this.$filmImage.src = newValue;
-            break;
-            case 'name':
-                this.$filmName.innerHTML = newValue;
-            break;
-            case 'date':
-                this.$filmDate.innerHTML = newValue;
-            break;
+        if(attrName == "recommendedFilm"){
+            let filmData = JSON.parse(newValue);
+            console.log(filmData);
+            this.$filmImage.src = filmData.img;
+            this.$filmName.innerHTML = filmData.name;
         }
     }
 }

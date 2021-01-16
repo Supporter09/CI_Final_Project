@@ -1,5 +1,5 @@
 import RecommendItem from "./RecommendItem.js";
-import {getDataFromDocs, getDataFromFirebase} from "../utils.js"
+import { getDataFromDocs, getDataFromFirebase } from "../utils.js";
 
 const $template = document.createElement("template");
 $template.innerHTML = /*html*/ `
@@ -7,7 +7,8 @@ $template.innerHTML = /*html*/ `
 
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <recommend-item id="recommended-films" image="https://ss-images.catscdn.vn/2019/08/21/5887028/spider-man-far-from-home-3.jpg" name="Spiderman" date="20 Dec 1969"></recommend-item>
+    <div id="recommended-films">
+    </div>
 `;
 
 export default class RecommendContainer extends HTMLElement {
@@ -16,13 +17,31 @@ export default class RecommendContainer extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild($template.content.cloneNode(true));
 
-    this.$img = this.shadowRoot.getElementById("recommended-films");
+    this.$recommendedFilm = this.shadowRoot.getElementById("recommended-films");
   }
 
   async connectedCallback() {
     let dataFilm = await getDataFromFirebase();
     dataFilm = getDataFromDocs(dataFilm);
     console.log(dataFilm);
+    let check = 150;
+    for (let i = 0; i < 3; i++) {
+      let recommendedFilmTmp = dataFilm[0];
+      let minRating = 0;
+      for (let film of dataFilm) {
+        if (film.rating < check && film.rating > minRating) {
+          minRating = film.rating;
+          recommendedFilmTmp = film;
+        }
+      }
+      check = minRating;
+      console.log(check);
+      let filmUploadToRecommend = new RecommendItem(
+        JSON.stringify(recommendedFilmTmp)
+      );
+      console.log(filmUploadToRecommend);
+      this.$recommendedFilm.appendChild(filmUploadToRecommend);
+    }
   }
 }
 
