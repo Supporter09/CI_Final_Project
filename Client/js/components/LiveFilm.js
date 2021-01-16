@@ -59,9 +59,7 @@ export default class LiveFilm extends HTMLElement {
         .collection("FilmData")
         .where("name", "==", newValue)
         .get();
-      console.log(result);
       let realdata = getDataFromDocs(result.docs);
-      console.log(realdata);
       this.$film = this.shadowRoot.getElementById("film");
       this.$film.src = realdata[0].film_url;
       console.log(realdata[0].film_url);
