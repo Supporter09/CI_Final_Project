@@ -61,7 +61,15 @@ export default class LiveFilm extends HTMLElement {
         .where("name", "==", name)
         .get();
       let realdata = getDataFromDocs(result.docs);
-      realdata[0].rating++;
+      // hàm tăng giá trị lên 1
+      const increment = firebase.firestore.FieldValue.increment(1); 
+      const storyRef = await firebase
+        .firestore()
+        .collection("FilmData")
+        .doc(`${realdata[0].id}`)
+        .update({
+        rating: increment,
+      });
       console.log(`${name} + 1`);
     };
   }
