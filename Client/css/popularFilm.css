@@ -19,6 +19,7 @@
 
 #popular-container {
     height: 260px;
+    cursor: pointer;
 }
 
 .row {
