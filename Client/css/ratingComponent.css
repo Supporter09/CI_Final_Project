@@ -1,0 +1,51 @@
+.row{
+    margin-top: 5vh;
+    background-color: #1C1C24;
+    height: 25vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.component{
+    height: auto;
+    vertical-align: middle;
+}
+
+.component h3{
+    font-size: 7vh;
+    text-align: center;
+}
+
+#name{
+    cursor: pointer;
+}
+
+#name:hover{
+    color: #4fc2b1;
+    transition: color 0.6s;
+}
+
+#image:hover{
+    border: 3px #cccccc solid;
+    transition: border .6s;
+}
+
+#ranking{
+    color: #39538f;
+}
+
+#rating{
+    color: #a8ab57;
+    cursor: default;
+}
+
+.component h2{
+    font-size: 5vh;
+}
+
+img {
+    object-fit: cover;
+    height: 21vh;
+}
