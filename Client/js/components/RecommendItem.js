@@ -7,7 +7,7 @@ $template.innerHTML= /*html*/ `
     
     <div class="shadow-none p-4 mb-2 bg-light rounded">
         <div>
-            <img id="film-image" src="" alt="" width="200" height="150">
+            <img id="film-image" src="" alt="imagine" width="200" height="150">
         </div>
         <div>
             <h3 id="film-name">Frozen</h3>
@@ -23,17 +23,17 @@ export default class RecommendItem extends HTMLElement {
         this.$filmImage = this.shadowRoot.getElementById('film-image');
         this.$filmName = this.shadowRoot.getElementById('film-name');
 
-        this.setAttribute('recommendedFilm', recommendedFilmData);
+        this.setAttribute('recommended-film', recommendedFilmData);
     }
 
     static get observedAttributes () {
-        return ['recommendedFilm'];
+        return ['recommended-film'];
     }
 
     attributeChangedCallback(attrName, oldValue, newValue) {
-        if(attrName == "recommendedFilm"){
+        if(attrName == "recommended-film"){  
             let filmData = JSON.parse(newValue);
-            console.log(filmData);
+            console.log('hung');
             this.$filmImage.src = filmData.img;
             this.$filmName.innerHTML = filmData.name;
         }

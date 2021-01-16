@@ -39,7 +39,6 @@ export default class RecommendContainer extends HTMLElement {
       let filmUploadToRecommend = new RecommendItem(
         JSON.stringify(recommendedFilmTmp)
       );
-      console.log(filmUploadToRecommend);
       this.$recommendedFilm.appendChild(filmUploadToRecommend);
     }
   }
