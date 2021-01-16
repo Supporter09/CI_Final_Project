@@ -1,3 +1,32 @@
 .container {
     margin-top: 80px;;
+    margin-bottom: 50px;
+}
+
+#name{
+    color: #cccccc;
+    margin-top: 2vh;
+    font-size: 5vh;
+}
+
+#date{
+    color: #cccccc;
+    font-size: 2vh;
+    padding-left: 30px;
+}
+
+#bio{
+    color: #cccccc;
+    font-size: 3vh;
+
+}
+
+#nameAndRating{
+    display: flex;
+}
+
+#rating-btn{
+    margin-top: 4vh;
+    margin-left: 3vw;
+    height: 5vh;
 }

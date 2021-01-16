@@ -12,6 +12,12 @@ $template.innerHTML = /*html*/ `
         <div class="row">
             <div class="col-lg-9" style="height: 80vh;">
                 <iframe id="film" src="" width="100%" height="100%"></iframe>
+                <div id="nameAndRating">
+                  <p id="name"></p>
+                  <button id="rating-btn" type="button" class="btn btn-light">Vote!</button>
+                </div>
+                <div><p id="date"></p></div>
+                <div><p id="bio"></p></div>
             </div>
             <div class="col-lg-3">
                 <div>
@@ -28,6 +34,10 @@ export default class LiveFilm extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild($template.content.cloneNode(true));
+    this.$name = this.shadowRoot.getElementById("name");
+    this.$date = this.shadowRoot.getElementById("date");
+    this.$bio = this.shadowRoot.getElementById("bio");
+    this.$ratingbtn = this.shadowRoot.getElementById("rating-btn");
     this.$recommendContainer = this.shadowRoot.getElementById(
       "recommend-container"
     );
@@ -38,14 +48,22 @@ export default class LiveFilm extends HTMLElement {
     console.log(name);
     this.setAttribute("name", name);
 
-    this.$recommendContainer.addEventListener(
-      "film-change-event2",
-      (event) => {
-        let name = event.detail.message;
-        console.log(name);
-        this.setAttribute("name", name);
-      }
-    );
+    this.$recommendContainer.addEventListener("film-change-event2", (event) => {
+      name = event.detail.message;
+      console.log(name);
+      this.setAttribute("name", name);
+    });
+
+    this.$ratingbtn.onclick = async () => {
+      let result = await firebase
+        .firestore()
+        .collection("FilmData")
+        .where("name", "==", name)
+        .get();
+      let realdata = getDataFromDocs(result.docs);
+      realdata[0].rating++;
+      console.log(`${name} + 1`);
+    };
   }
 
   static get observedAttributes() {
@@ -62,6 +80,9 @@ export default class LiveFilm extends HTMLElement {
       let realdata = getDataFromDocs(result.docs);
       this.$film = this.shadowRoot.getElementById("film");
       this.$film.src = realdata[0].film_url;
+      this.$name.innerHTML = realdata[0].name;
+      this.$date.innerHTML = realdata[0].birth_details;
+      this.$bio.innerHTML = realdata[0].bio;
       console.log(realdata[0].film_url);
       console.log(this.$film.src);
       window.scroll(0, 0);
