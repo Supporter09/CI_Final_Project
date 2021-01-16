@@ -44,11 +44,16 @@ export default class FilmListSearch extends HTMLElement {
         this.$filmListSearch.innerHTML = "";
         console.log(newValue);
         let filmData = await getDataFromFirebase();
+        let checkInputValueValidate = true;
         for(let film of filmData){
           if(getDataFromDoc(film).name.toLowerCase().includes(newValue.toLowerCase())){
             let $film = new FilmContainer(getDataFromDoc(film));
             this.$filmListSearch.appendChild($film);
+            checkInputValueValidate = false;
           }
+        }
+        if(checkInputValueValidate){
+          alert(`Sorry, we can't find "${newValue}"`);
         }
       }
     }
