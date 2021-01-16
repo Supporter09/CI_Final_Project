@@ -1,10 +1,10 @@
-import Navbar from "./Navbar.js"
-import Footer from "./Footer.js"
-import RecommendContainer from "./RecommendContainer.js"
-import {getDataFromDoc, getDataFromDocs} from "../../js/utils.js";
+import Navbar from "./Navbar.js";
+import Footer from "./Footer.js";
+import RecommendContainer from "./RecommendContainer.js";
+import { getDataFromDoc, getDataFromDocs } from "../../js/utils.js";
 
-const $template = document.createElement('template');
-$template.innerHTML= /*html*/ `
+const $template = document.createElement("template");
+$template.innerHTML = /*html*/ `
     <style>
 
     </style>
@@ -25,21 +25,27 @@ $template.innerHTML= /*html*/ `
     `;
 
 export default class LiveFilm extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({mode: 'open'});
-        this.shadowRoot.appendChild($template.content.cloneNode(true));
-    }
-async connectedCallback() {
-    let name = localStorage.getItem('name');
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.shadowRoot.appendChild($template.content.cloneNode(true));
+  }
+
+  async connectedCallback() {
+    let name = localStorage.getItem("name");
     console.log(name);
-    let result =  await firebase.firestore().collection('FilmData').where('name', '==', name).get();
+    let result = await firebase
+      .firestore()
+      .collection("FilmData")
+      .where("name", "==", name)
+      .get();
     let realdata = getDataFromDocs(result.docs);
-    this.$film = this.shadowRoot.getElementById('film');
+    this.$film = this.shadowRoot.getElementById("film");
     this.$film.src = realdata[0].film_url;
     console.log(realdata[0].film_url);
     console.log(this.$film.src);
-}
+    window.scroll(0, 0);
+  }
 }
 
-window.customElements.define('live-film', LiveFilm);
+window.customElements.define("live-film", LiveFilm);
