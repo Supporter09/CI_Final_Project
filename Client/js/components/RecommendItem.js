@@ -1,11 +1,9 @@
 const $template = document.createElement('template');
 $template.innerHTML= /*html*/ `
-    <style>
-
-    </style>
+    <link rel="stylesheet" href="./css/recommendItem.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
-    <div class="shadow-none p-4 mb-2 bg-light rounded">
+    <div id="container" class="shadow-none p-4 mb-2 bg-light rounded">
         <div>
             <img id="film-image" src="" alt="imagine" width="200" height="150">
         </div>
