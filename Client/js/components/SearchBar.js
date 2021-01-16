@@ -10,6 +10,7 @@ $template.innerHTML = /*html*/ `
     <div class="form-group">
       <label id="label-search" for="">Search:</label>
       <input label="Search" id="search-input" type="search" class="form-control" placeholder="Avenger" aria-label="Search" value="">
+      <div id="error"></div>
     </div>
   </form>
 `;
@@ -22,27 +23,36 @@ export default class SearchBar extends HTMLElement {
 
     this.$form = this.shadowRoot.getElementById("search-bar");
     this.$searchInput = this.shadowRoot.getElementById("search-input");
+    this.$error = this.shadowRoot.getElementById("error");
   }
 
   connectedCallback() {
   }
 
   static get observedAttributes() {
-    return ["value"];
+    return ["value", "error"];
   }
 
   attributeChangedCallback(attrName, oldValue, newValue) {
     if (attrName == "value") {
       // console.log(newValue);
     }
+    else if(attrName == "error"){
+      this.$error.innerHTML = newValue;
+    }
   }
 
   set onSearchFilm(callback){
     this.$form.onsubmit = (event) => {
       event.preventDefault();
+      this.$error.innerHTML = "";
       callback(this.$searchInput.value);
     }
   }
+
+  // set error(v) {
+  //   this.setAttribute('error', v);
+  // }
 }
 
 window.customElements.define("search-bar", SearchBar);
