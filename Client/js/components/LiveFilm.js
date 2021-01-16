@@ -17,7 +17,7 @@ $template.innerHTML = /*html*/ `
                 <div>
                     <h3 style="color: rgb(255,255,255);">Recommend</h3>
                 </div>
-                <recommend-container></recommend-container>
+                <recommend-container id="recommend-container"></recommend-container>
             </div>
         </div>
     </div>
@@ -28,22 +28,46 @@ export default class LiveFilm extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild($template.content.cloneNode(true));
+    this.$recommendContainer = this.shadowRoot.getElementById(
+      "recommend-container"
+    );
   }
 
-  async connectedCallback() {
+  connectedCallback() {
     let name = localStorage.getItem("name");
     console.log(name);
-    let result = await firebase
-      .firestore()
-      .collection("FilmData")
-      .where("name", "==", name)
-      .get();
-    let realdata = getDataFromDocs(result.docs);
-    this.$film = this.shadowRoot.getElementById("film");
-    this.$film.src = realdata[0].film_url;
-    console.log(realdata[0].film_url);
-    console.log(this.$film.src);
-    window.scroll(0, 0);
+    this.setAttribute("name", name);
+
+    this.$recommendContainer.addEventListener(
+      "film-change-event2",
+      (event) => {
+        let name = event.detail.message;
+        console.log(name);
+        this.setAttribute("name", name);
+      }
+    );
+  }
+
+  static get observedAttributes() {
+    return ["name"];
+  }
+
+  async attributeChangedCallback(attrName, oldValue, newValue) {
+    if (attrName == "name") {
+      let result = await firebase
+        .firestore()
+        .collection("FilmData")
+        .where("name", "==", newValue)
+        .get();
+      console.log(result);
+      let realdata = getDataFromDocs(result.docs);
+      console.log(realdata);
+      this.$film = this.shadowRoot.getElementById("film");
+      this.$film.src = realdata[0].film_url;
+      console.log(realdata[0].film_url);
+      console.log(this.$film.src);
+      window.scroll(0, 0);
+    }
   }
 }
 

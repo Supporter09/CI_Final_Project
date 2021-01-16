@@ -27,14 +27,15 @@ export default class RecommendItem extends HTMLElement {
 
   connectedCallback() {
     this.$card.onclick = () => {
-      console.log("hung");
       let name = this.$filmName.innerHTML;
       localStorage.setItem("name", name);
-      // let result =  firebase.firestore().collection('FilmData').where('name', '==', '').get();
-      // console.log(result);
-      // let realdata = getDataFromDocs(result.docs);
-      // console.log(realdata);
-      window.location.href = "#!/livefilm";
+      let FilmChangeEvent1 = new CustomEvent("film-change-event1", {
+        bubbles: true,
+        detail: {
+          message: `${name}`,
+        },
+      });
+      this.dispatchEvent(FilmChangeEvent1);
     };
   }
 

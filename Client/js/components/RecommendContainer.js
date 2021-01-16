@@ -18,6 +18,20 @@ export default class RecommendContainer extends HTMLElement {
   }
 
   async connectedCallback() {
+    this.$recommendedFilm.addEventListener(
+      "film-change-event1",
+      (event) => {
+        console.log(`${event.detail.message}`);
+        let FilmChangeEvent2 = new CustomEvent("film-change-event2", {
+          bubbles: true,
+          detail: {
+            message: `${event.detail.message}`,
+          },
+        });
+        this.dispatchEvent(FilmChangeEvent2);
+      }
+    );
+
     let dataFilm = await getDataFromFirebase();
     dataFilm = getDataFromDocs(dataFilm);
     console.log(dataFilm);
