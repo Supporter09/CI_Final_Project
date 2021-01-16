@@ -35,7 +35,7 @@ export default class RecommendContainer extends HTMLElement {
     let dataFilm = await getDataFromFirebase();
     dataFilm = getDataFromDocs(dataFilm);
     console.log(dataFilm);
-    let check = 150;
+    let check = 300;
     for (let i = 0; i < 3; i++) {
       let recommendedFilmTmp = dataFilm[0];
       let minRating = 0;

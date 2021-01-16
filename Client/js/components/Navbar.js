@@ -13,7 +13,7 @@ $templateNavbar.innerHTML = /*html */ `
           <a href="#!/films" class="nav-link">Films</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">Ranking</a>
+          <a href="#!/ranking" class="nav-link">Ranking</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">News</a>

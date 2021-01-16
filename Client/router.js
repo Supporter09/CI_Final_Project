@@ -47,5 +47,11 @@ router.on("/livefilm", function () {
     console.log('Bạn đang ở trang xem phim');
 });
 
+router.on("/ranking", function () {
+  document.getElementById("app").innerHTML =
+    "<rating-list-page></rating-list-page>";
+    console.log('Bạn đang ở trang ranking');
+});
+
 
 window.router = router;
