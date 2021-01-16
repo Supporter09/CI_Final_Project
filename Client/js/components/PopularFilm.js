@@ -34,17 +34,12 @@ export default class PopularFilm extends HTMLElement {
     this.$description = this.shadowRoot.getElementById("description");
     this.$release = this.shadowRoot.getElementById("release");
     this.$image = this.shadowRoot.getElementById("image");
-    // this.setAttribute("film-data", data);
   }
 
   connectedCallback() {
     this.$card.onclick = () => {
       let name = this.$name.innerHTML;
       localStorage.setItem("name", name);
-      // let result =  firebase.firestore().collection('FilmData').where('name', '==', '').get();
-      // console.log(result);
-      // let realdata = getDataFromDocs(result.docs);
-      // console.log(realdata);
       window.location.href = "#!/livefilm";
     };
   }

@@ -41,10 +41,12 @@ export default class RatingComponent extends HTMLElement {
     this.$name.onclick = () => {
       let name = this.$name.innerHTML;
       localStorage.setItem("name", name);
-      // let result =  firebase.firestore().collection('FilmData').where('name', '==', '').get();
-      // console.log(result);
-      // let realdata = getDataFromDocs(result.docs);
-      // console.log(realdata);
+      window.location.href = "#!/livefilm";
+    };
+
+    this.$img.onclick = () => {
+      let name = this.$name.innerHTML;
+      localStorage.setItem("name", name);
       window.location.href = "#!/livefilm";
     };
   }

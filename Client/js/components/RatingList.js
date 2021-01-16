@@ -10,7 +10,7 @@ $template.innerHTML = /*html*/ `
   <div class="container" id="rating-film-list">
     <div class="row">
       <div class="col-sm-1 component">
-        STT
+        Top
       </div>
       <div class="col-sm-3">
       
@@ -22,7 +22,7 @@ $template.innerHTML = /*html*/ `
         Director
       </div>
       <div class="col-sm-2">
-        Like
+        🏆
       </div>
     </div>
   </div>
@@ -40,18 +40,22 @@ export default class RatingList extends HTMLElement {
   async connectedCallback() {
     let dataFilm = await getDataFromFirebase();
     dataFilm = getDataFromDocs(dataFilm);
-    let check = 300;
+    let check = [];
+    let maxRank = 300;
+    let nameTmp;
     for (let i = 0; i < 10; i++) {
       let ratingFilmTmp = dataFilm[0];
       let minRating = 0;
-      for (let film of dataFilm) {
-        if (film.rating < check && film.rating > minRating) {
-          minRating = film.rating;
-          ratingFilmTmp = film;
+      let posRating = 0;
+      for(let j = 0; j < dataFilm.length; j++){
+        if (!check[j] && dataFilm[j].rating <= maxRank && dataFilm[j].rating > minRating) {
+          minRating = dataFilm[j].rating;
+          ratingFilmTmp = dataFilm[j];
+          posRating = j;
         }
       }
-      check = minRating;
-      console.log(check);
+      check[posRating] = true;
+      maxRank = minRating;
       let $ratingFilm = new RatingComponent(JSON.stringify(ratingFilmTmp), i + 1);
       this.$ratingFilmList.appendChild($ratingFilm);
     }

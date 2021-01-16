@@ -71,7 +71,7 @@ export default class LiveFilm extends HTMLElement {
           rating: increment,
         });
       console.log(`${name} + 1`);
-      this.$ratingbtn.disabled = "true";
+      this.$ratingbtn.disabled = true;
     };
   }
 
@@ -95,6 +95,7 @@ export default class LiveFilm extends HTMLElement {
       console.log(realdata[0].film_url);
       console.log(this.$film.src);
       window.scroll(0, 0);
+      this.$ratingbtn.disabled = false;
     }
   }
 }

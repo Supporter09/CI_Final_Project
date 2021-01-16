@@ -13,6 +13,11 @@
 
 }
 
+#label:hover{
+    color: white;
+    cursor: default;
+}
+
 .container{
     background-color: #131419;
 }
@@ -20,6 +25,11 @@
 #popular-container {
     height: 260px;
     cursor: pointer;
+}
+
+#popular-container:hover{
+    transform: scale(1.01, 1.01);
+    transition: transform .5s;
 }
 
 .row {
@@ -37,6 +47,11 @@
     max-height: 220px;
     justify-content: center;
     object-fit: cover;
+}
+
+#image:hover{
+    border: 3px #cccccc solid;
+    transition-duration: 1s;
 }
 
 #filmInformation {

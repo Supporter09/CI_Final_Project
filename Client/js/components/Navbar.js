@@ -16,10 +16,10 @@ $templateNavbar.innerHTML = /*html */ `
           <a href="#!/ranking" class="nav-link">Ranking</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">News</a>
+          <a id="news" href="#" class="nav-link">News</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">More</a>
+          <a id="more" href="#" class="nav-link">More</a>
         </li>
         <button type="button" id="login-btn" class="btn btn-outline-light btn-sm" ><a href="#!/sign-in" style="text-decoration: none;">Login</a></button>
       </ul>
@@ -35,6 +35,23 @@ export default class NavbarOnTop extends HTMLElement {
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild($templateNavbar.content.cloneNode(true));
     this.$sign_in_btn = this.shadowRoot.getElementById("login-btn");
+
+    this.$news = this.shadowRoot.getElementById("news");
+    this.$more = this.shadowRoot.getElementById("more");
+  }
+
+  connectedCallback(){
+    this.$news.onclick = () => {
+      this.$news.style.opacity = "0";
+      this.$news.style.cursor = "default";
+      alert("Chức năng đang thử nghiệm😁");
+    }
+
+    this.$more.onclick = () => {
+      this.$more.style.opacity = "0";
+      this.$more.style.cursor = "default";
+      alert("Chức năng đang thử nghiệm😁");
+    }
   }
 
 }
