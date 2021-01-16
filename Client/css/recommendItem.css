@@ -4,6 +4,7 @@
     height: 190px;
     cursor: pointer;
     border-radius: 10px !important;
+    text-align: center;
 }
 
 #container:hover{
@@ -12,6 +13,7 @@
 }
 
 #film-image{
+    max-width: 100%;
     margin-top: -12px !important;
     height: 127px !important;
     border-radius: 10px !important;
@@ -24,5 +26,4 @@
     overflow: hidden;
     white-space: nowrap; 
     text-overflow: ellipsis;
-    text-align: center;
 }
