@@ -29,11 +29,19 @@ export default class PopularFilm extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild($templatePopularFilm.content.cloneNode(true));
+    this.$card = this.shadowRoot.getElementById("popular-container");
     this.$name = this.shadowRoot.getElementById("name-popular-film");
     this.$description = this.shadowRoot.getElementById("description");
     this.$release = this.shadowRoot.getElementById("release");
     this.$image = this.shadowRoot.getElementById("image");
-    // this.setAttribute("film-data", data);
+  }
+
+  connectedCallback() {
+    this.$card.onclick = () => {
+      let name = this.$name.innerHTML;
+      localStorage.setItem("name", name);
+      window.location.href = "#!/livefilm";
+    };
   }
 
   static get observedAttributes() {

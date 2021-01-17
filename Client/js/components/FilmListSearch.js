@@ -52,14 +52,22 @@ export default class FilmListSearch extends HTMLElement {
             checkInputValueValidate = false;
           }
         }
+
         if(checkInputValueValidate){
-          alert(`Sorry, we can't find "${newValue}"`);
-          console.log('Thanh tìm kiếm trống');
           let filmData = await getDataFromFirebase();
           for(let film of filmData){
             let $film = new FilmContainer(getDataFromDoc(film));
             this.$filmListSearch.appendChild($film);
           }
+
+          let notFoundFilmEvent = new CustomEvent('not-found-film-event', {
+            bubbles: true,
+            detail: {
+              message: "Không tìm thấy phim"
+            }
+          });
+          this.dispatchEvent(notFoundFilmEvent);
+
         }
       }
     }

@@ -1,6 +1,7 @@
 *{
     background-color: #1C1C24;
     color: #cccccc;
+    margin-top: 20px;
 }
 
 .form-group{
@@ -15,7 +16,7 @@
 
 #label-search{
     margin-top: 20px;
-    padding-left: 10px;
+    padding-left: 1vw;
     font-size: 24px;
     overflow: hidden;
 }
@@ -23,4 +24,11 @@
 #search-input{
     margin: auto;
     width: 18vw;
+}
+
+#error{
+    padding-top: 7px;
+    text-align: center;
+    font-size: 12px;
+    color: #bd4b5e;
 }

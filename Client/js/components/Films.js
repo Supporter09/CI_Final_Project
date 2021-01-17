@@ -27,12 +27,18 @@ export default class FilmComponent extends HTMLElement {
   }
 
   connectedCallback() {
+    this.$SearchedFilmsList.addEventListener(
+      "not-found-film-event",
+      (event) => {
+        this.$keyword.setAttribute('error', event.detail.message);
+      }
+    );
+
     this.$keyword.onSearchFilm = (value) => {
       // console.log(value);
-      this.$SearchedFilmsList.setAttribute('value', value);
-    }
+      this.$SearchedFilmsList.setAttribute("value", value);
+    };
   }
-
 }
 
 window.customElements.define("films-component", FilmComponent);

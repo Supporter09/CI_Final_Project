@@ -15,13 +15,13 @@ $templateNavbar.innerHTML = /*html */ `
           <a href="#!/films" class="nav-link">Films</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">Ranking</a>
+          <a href="#!/ranking" class="nav-link">Ranking</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">News</a>
+          <a id="news" href="#" class="nav-link">News</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">More</a>
+          <a id="more" href="#" class="nav-link">More</a>
         </li>
         <button type="button" id="login-btn" class="btn btn-outline-light btn-sm" ><a href="#!/sign-in" style="text-decoration: none;">Login</a></button>
         
@@ -42,11 +42,25 @@ export default class NavbarOnTop extends HTMLElement {
     });
     this.shadowRoot.appendChild($templateNavbar.content.cloneNode(true));
     this.$sign_in_btn = this.shadowRoot.getElementById("login-btn");
+
     this.$navbar = this.shadowRoot.getElementById("navbar");
     this.$user_avatar = this.shadowRoot.getElementById("user-avatar");
     this.$greeting = this.shadowRoot.getElementById("greeting");
+    this.$news = this.shadowRoot.getElementById("news");
+    this.$more = this.shadowRoot.getElementById("more");
   }
   async connectedCallback() {
+    this.$news.onclick = () => {
+      this.$news.style.opacity = "0";
+      this.$news.style.cursor = "default";
+      alert("Chức năng đang thử nghiệm😁");
+    }
+
+    this.$more.onclick = () => {
+      this.$more.style.opacity = "0";
+      this.$more.style.cursor = "default";
+      alert("Chức năng đang thử nghiệm😁");
+    }
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
@@ -88,8 +102,6 @@ export default class NavbarOnTop extends HTMLElement {
         this.$user_avatar.style.display = "none";
       }
     });
-  }
-
 }
-
+}
 window.customElements.define("navbar-filter", NavbarOnTop);
