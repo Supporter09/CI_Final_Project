@@ -17,7 +17,6 @@ $template.innerHTML= /*html*/ `
         <div id="column1" class="col-lg-3">
             <avatar-wrapper></avatar-wrapper>
         </div>
-        
         <div class="col-lg-4"> 
             <profile-manager></profile-manager>
         </div>
@@ -26,6 +25,7 @@ $template.innerHTML= /*html*/ `
             <personal-statistic></personal-statistic>
         </div>
     </div>
+
     <script src="https://kit.fontawesome.com/af8c35088d.js" crossorigin="anonymous"></script>
 `;
 

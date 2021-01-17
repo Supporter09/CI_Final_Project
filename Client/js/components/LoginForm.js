@@ -21,7 +21,9 @@ $template.innerHTML = /*html*/ `
 	<link rel="stylesheet" type="text/css" href="./css/login-form-util.css">
 	<link rel="stylesheet" type="text/css" href="./css/login-from-main.css">
 <!--===============================================================================================-->
-    
+	<navbar-filter></navbar-filter>
+	<br></br>
+	<br></br>
     <div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -51,9 +53,10 @@ $template.innerHTML = /*html*/ `
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
+						<button class="login100-form-btn" id="submit-btn">
 							Login
 						</button>
+						<p class="txt2" id="error"></p>
 					</div>
 
 					<div class="text-center p-t-12">
@@ -66,7 +69,7 @@ $template.innerHTML = /*html*/ `
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="#">
+						<a class="txt2" href="#!/sign-up">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -75,6 +78,8 @@ $template.innerHTML = /*html*/ `
 			</div>
 		</div>
 	</div>
+	<br></br>
+	<footer-div></footer-div>
 
 <!--===============================================================================================-->	
 <script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -103,37 +108,42 @@ export default class RegisterForm extends HTMLElement {
             mode: 'open'
         })
         this.shadowRoot.appendChild($template.content.cloneNode(true));
-        this.$form = this.shadowRoot.getElementById('login-form');
-        this.$email = this.shadowRoot.getElementById('email').value;
-        this.$password = this.shadowRoot.getElementById('password').value;
+		// this.$form = this.shadowRoot.getElementById('login-form');
+		this.$submit_btn = this.shadowRoot.getElementById('submit-btn');
+        this.$email = this.shadowRoot.getElementById('email');
+		this.$password = this.shadowRoot.getElementById('password');
+		this.$error = this.shadowRoot.getElementById('error');
     }
 
     connectedCallback() {
-        this.$form.onsubmit = async (event) => {
+        this.$submit_btn.onclick = async (event) => {
             event.preventDefault();
             // console.log(this.$email.value());
-            let email = this.$email;
-            let password = this.$password;
+            let email = this.$email.value;
+            let password = this.$password.value;
             console.log(email,password)
             // if (email == '') {
             //     this.$email.alertError('Nhập email của bạn')
             // }else{
             //     this.$email.alertError('');
             // }
-            let isPassed =
-                InputWrapper.checkForm(this.$email, (value) => value != '', 'Nhap vao ten dang ki') &
-                InputWrapper.checkForm(this.$password, (value) => value != '', 'Nhap vao mat khau')
-            console.log(isPassed)
+            // let isPassed =
+            //     InputWrapper.checkForm(this.$email, (value) => value != '', 'Nhap vao ten dang ki') &
+            //     InputWrapper.checkForm(this.$password, (value) => value != '', 'Nhap vao mat khau')
+            // console.log(isPassed)
 
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then((user) => {
                     // Signed in 
-                    console.log("Sign In Succesfully")
+					console.log("Sign In Succesfully")
+					window.location.href = "./"
                     // ...
                 })
                 .catch((error) => {
                     var errorCode = error.code;
-                    var errorMessage = error.message;
+					var errorMessage = error.message;
+					console.log(errorMessage)
+					this.$error.innerHTML = errorMessage;
                 });
 
 

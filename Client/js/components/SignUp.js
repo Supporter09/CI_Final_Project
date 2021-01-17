@@ -30,7 +30,7 @@ $template.innerHTML = /*html*/ `
             </div>
             <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="#">Terms &amp; Conditions</a>, and <a href="#">Privacy Policy</a></p>
         </form>
-        <div class="text-center">Already have an account? <a href="#">Login here</a></div>
+        <div class="text-center">Already have an account? <a href="#!/log-in">Login here</a></div>
     </div>
     
     
@@ -102,7 +102,8 @@ export default class RegisterForm extends HTMLElement {
                         nickname: nickname,
                         name: name,
                         email: email,
-                        password: CryptoJS.MD5(password).toString()
+                        password: CryptoJS.MD5(password).toString(),
+                        avatar:"https://lh3.googleusercontent.com/pw/ACtC-3c62Ub_pEImDAGnAMUTc0V1UBj3Zwoyahb57mNbkR05x4aYOob-h-dOQYdnb2mcYe8XCO1C43JpeFKzKjykj_WS8z_4AUvYkactJmq_rsZq4O6SxvO-VQH48o39GgCDtHzks-cwE84_6IDqCk0BqdfA=s903-no?authuser=0"
                     });
                     window.location.href ='./'
                 } else {
