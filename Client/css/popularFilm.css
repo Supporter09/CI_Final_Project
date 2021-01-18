@@ -47,6 +47,7 @@
     max-height: 220px;
     justify-content: center;
     object-fit: cover;
+    width: 100%;
 }
 
 #image:hover{
