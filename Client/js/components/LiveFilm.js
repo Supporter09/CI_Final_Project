@@ -3,25 +3,6 @@ import Footer from "./Footer.js";
 import RecommendContainer from "./RecommendContainer.js";
 import { getDataFromDoc, getDataFromDocs } from "../../js/utils.js";
 
-<<<<<<< HEAD
-const $template = document.createElement('template');
-$template.innerHTML= /*html*/ `
-    <style>
-
-    </style>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <navbar-filter></navbar-filter>
-    <br></br>
-    <br></br>
-    <div class="row">
-        <div class="col-lg-10">
-            <iframe id="film" src="" width="100%" height="66%"></iframe>
-        </div>
-        <div class="col-lg-2">
-            <div>
-                <h3 style="color: rgb(255,255,255);">Recommend</h3>
-=======
 const $template = document.createElement("template");
 $template.innerHTML = /*html*/ `
     <link rel="stylesheet" href="./css/liveFilm.css">
@@ -43,7 +24,6 @@ $template.innerHTML = /*html*/ `
                     <h3 style="color: rgb(255,255,255);">Recommend</h3>
                 </div>
                 <recommend-container id="recommend-container"></recommend-container>
->>>>>>> 2c4ee84ccfce5773a88d8e8a56c8757d4a1bede2
             </div>
         </div>
     </div>
