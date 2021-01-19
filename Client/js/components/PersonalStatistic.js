@@ -33,7 +33,8 @@ export default class PersonalStatistic extends HTMLElement {
     }
     
     async connectedCallback() {
-        let result = await firebase.firestore().collection('users').where('email', '==', 'hieu@gmail.com').get();
+        let email = localStorage.getItem('email');
+        let result = await firebase.firestore().collection('users').where('email', '==', email).get();
         let realdata = getDataFromDocs(result.docs);
         let links = [realdata[0].linkFb, realdata[0].linkTwitter, realdata[0].linkVk];
             let $statisticData = new StatisticData('fab fa-facebook-f', '', 'Facebook', 'fas fa-plus', links[0]);
