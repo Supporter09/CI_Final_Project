@@ -1,11 +1,14 @@
 import validateEmail from '../utils.js'
 import InputWrapper from "./InputWrapper.js";
-
+import NavbarFilter from "./Navbar.js"
+import FooterDiv from "./Footer.js"
 const $template = document.createElement('template');
 // <-- Khi submit thi chuyen den duong dan trong attr action cua form -->
 $template.innerHTML = /*html*/ `
 <script defer src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
     <link rel="stylesheet" href="./css/register-form.css">
+    <navbar-filter></navbar-filter>
+	<br></br>
     <div class="signup-form">
         <form action="" id="register-form">
             <h2>Sign Up</h2>
@@ -32,7 +35,8 @@ $template.innerHTML = /*html*/ `
         </form>
         <div class="text-center">Already have an account? <a href="#!/sign-in">Login here</a></div>
     </div>
-    
+    <br></br>
+	<footer-div></footer-div>
     
 `
 
@@ -103,7 +107,8 @@ export default class RegisterForm extends HTMLElement {
                         // ...
                     })
 
-
+                alert("Đăng kí thành công");
+                window.location.href = './'
                 }).catch(function (error) {
                     // Handle Errors here.
                     var errorCode = error.code;

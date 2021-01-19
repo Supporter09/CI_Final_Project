@@ -1,6 +1,7 @@
 import { getDataFromDocs, getDataFromFirebase } from "../utils.js";
-import RatingComponent from "./ratingComponent.js";
-
+import RatingComponent from "./RatingComponent.js";
+// RatingComponet :) anh hung danh sai ne
+// hự, sửa lại
 const $template = document.createElement("template");
 
 $template.innerHTML = /*html*/ `
