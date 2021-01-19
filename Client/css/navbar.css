@@ -50,3 +50,21 @@
     color: #F1E4FF;
     background-color: #8C30F5;
 }
+
+#logout-btn {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    right: 0px;
+    background-color: #F1E4FF;
+    color: #8C30F5;
+    width: 100px;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+#logout-btn:hover {
+    border: none;
+    color: #F1E4FF;
+    background-color: #8C30F5;
+}

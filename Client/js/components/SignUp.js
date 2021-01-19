@@ -30,7 +30,7 @@ $template.innerHTML = /*html*/ `
             </div>
             <p class="small text-center">By clicking the Sign Up button, you agree to our <br><a href="#">Terms &amp; Conditions</a>, and <a href="#">Privacy Policy</a></p>
         </form>
-        <div class="text-center">Already have an account? <a href="#!/log-in">Login here</a></div>
+        <div class="text-center">Already have an account? <a href="#!/sign-in">Login here</a></div>
     </div>
     
     

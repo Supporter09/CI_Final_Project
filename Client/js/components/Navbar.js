@@ -24,7 +24,7 @@ $templateNavbar.innerHTML = /*html */ `
           <a id="more" href="#" class="nav-link">More</a>
         </li>
         <button type="button" id="login-btn" class="btn btn-outline-light btn-sm" ><a href="#!/sign-in" style="text-decoration: none;">Login</a></button>
-        
+        <button type="button" id="logout-btn" class="btn btn-outline-light btn-sm" ><a href="#!/sign-in" style="text-decoration: none;">Log Out</a></button>
       </ul>
       <a href="#!/profile"><img src="" alt="" id="user-avatar" class=""></a>
       <p id="greeting" style="margin-bottom: 0px;padding-left: 20px;"></p>
@@ -42,7 +42,7 @@ export default class NavbarOnTop extends HTMLElement {
     });
     this.shadowRoot.appendChild($templateNavbar.content.cloneNode(true));
     this.$sign_in_btn = this.shadowRoot.getElementById("login-btn");
-
+    this.$log_out_btn = this.shadowRoot.getElementById("logout-btn");
     this.$navbar = this.shadowRoot.getElementById("navbar");
     this.$user_avatar = this.shadowRoot.getElementById("user-avatar");
     this.$greeting = this.shadowRoot.getElementById("greeting");
@@ -80,8 +80,10 @@ export default class NavbarOnTop extends HTMLElement {
           // image.setAttribute('src',photoUrl);
           // this.$navbar.appendChild(image);
           this.$user_avatar.style.display = "block";
-          this.$sign_in_btn.innerHTML = "Sign Out"
-          this.$sign_in_btn.setAttribute('src','#')
+          this.$log_out_btn.style.display= "block";
+          this.$sign_in_btn.style.display = "none"
+          // this.$sign_in_btn.innerHTML = "Sign Out"
+          // this.$sign_in_btn.setAttribute('src','#')
           this.$user_avatar.setAttribute('src',photoUrl)
           this.$greeting.innerHTML  = "Hello, " + name + " !"
         }
@@ -97,6 +99,16 @@ export default class NavbarOnTop extends HTMLElement {
         }
         
         
+        this.$log_out_btn.addEventListener('click',()=>{
+          firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            // alert("you have signed out")
+            console.log("user sign out")
+            window.location.href ="./"
+          }).catch((error) => {
+            // An error happened.
+          });
+        })
         
 
       } else {
@@ -104,6 +116,7 @@ export default class NavbarOnTop extends HTMLElement {
         console.log('not sign in')
         this.$sign_in_btn.style.display ="block";
         this.$user_avatar.style.display = "none";
+        this.$log_out_btn.style.display= "none";
       }
     });
 }
