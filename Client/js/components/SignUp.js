@@ -81,7 +81,26 @@ export default class RegisterForm extends HTMLElement {
             if (isPassed) {
                 console.log(email)
                 console.log(password)
-                firebase.auth().createUserWithEmailAndPassword(email, password).then().catch(function (error) {
+                firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
+                    firebase.firestore().collection('users').add({
+                        id: CryptoJS.MD5(password).toString(),
+                        nickname: nickname,
+                        name: name,
+                        email: email,
+                        password: CryptoJS.MD5(password).toString(),
+                        avatar: "https://lh3.googleusercontent.com/pw/ACtC-3c62Ub_pEImDAGnAMUTc0V1UBj3Zwoyahb57mNbkR05x4aYOob-h-dOQYdnb2mcYe8XCO1C43JpeFKzKjykj_WS8z_4AUvYkactJmq_rsZq4O6SxvO-VQH48o39GgCDtHzks-cwE84_6IDqCk0BqdfA=s903-no?authuser=0"
+                    }).catch(function (error) {
+                        // Handle Errors here.
+                        var errorCode = error.code;
+                        var errorMessage = error.message;
+                        console.log(errorCode);
+                        console.log(errorMessage);
+                        alert(errorMessage)
+                        // ...
+                    })
+
+
+                }).catch(function (error) {
                     // Handle Errors here.
                     var errorCode = error.code;
                     var errorMessage = error.message;
@@ -89,26 +108,8 @@ export default class RegisterForm extends HTMLElement {
                     console.log(errorMessage);
                     alert(errorMessage)
                     // ...
-                });
-
-                let result = await firebase
-                    .firestore()
-                    .collection('users')
-                    .where('email', '==', email)
-                    .get();
-                if (result.empty) {
-                    firebase.firestore().collection('users').add({
-                        id:CryptoJS.MD5(password).toString(),
-                        nickname: nickname,
-                        name: name,
-                        email: email,
-                        password: CryptoJS.MD5(password).toString(),
-                        avatar:"https://lh3.googleusercontent.com/pw/ACtC-3c62Ub_pEImDAGnAMUTc0V1UBj3Zwoyahb57mNbkR05x4aYOob-h-dOQYdnb2mcYe8XCO1C43JpeFKzKjykj_WS8z_4AUvYkactJmq_rsZq4O6SxvO-VQH48o39GgCDtHzks-cwE84_6IDqCk0BqdfA=s903-no?authuser=0"
-                    });
-                    window.location.href ='./'
-                } else {
-                    alert('Email nay do co nguoi su dung')
-                }
+                })
+               
             }
         }
     }

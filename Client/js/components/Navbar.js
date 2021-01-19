@@ -5,7 +5,7 @@ $templateNavbar.innerHTML = /*html */ `
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   
   <nav class="navbar navbar-expand-md fixed-top" >
-    <a class="navbar-brand" href="#!/">Netflix</i></a>
+    <a class="navbar-brand" href="#!/">Luminex</i></a>
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -27,7 +27,7 @@ $templateNavbar.innerHTML = /*html */ `
         
       </ul>
       <a href="#!/profile"><img src="" alt="" id="user-avatar" class=""></a>
-      <p id="greeting"></p>
+      <p id="greeting" style="margin-bottom: 0px;padding-left: 20px;"></p>
     </div>
   </nav>
  
@@ -80,18 +80,22 @@ export default class NavbarOnTop extends HTMLElement {
           // image.setAttribute('src',photoUrl);
           // this.$navbar.appendChild(image);
           this.$user_avatar.style.display = "block";
-          this.$sign_in_btn.style.display ="none";
+          this.$sign_in_btn.innerHTML = "Sign Out"
+          this.$sign_in_btn.setAttribute('src','#')
           this.$user_avatar.setAttribute('src',photoUrl)
           this.$greeting.innerHTML  = "Hello, " + name + " !"
         }
-        // user.updateProfile({
-        //   displayName: "Jane Q. User",
-        //   photoURL: "https://lh3.googleusercontent.com/pw/ACtC-3c62Ub_pEImDAGnAMUTc0V1UBj3Zwoyahb57mNbkR05x4aYOob-h-dOQYdnb2mcYe8XCO1C43JpeFKzKjykj_WS8z_4AUvYkactJmq_rsZq4O6SxvO-VQH48o39GgCDtHzks-cwE84_6IDqCk0BqdfA=s903-no?authuser=0"
-        // }).then(function() {
-          
-        // }).catch(function(error) {
-          
-        // });
+        if (user.displayName == null && user.photoURL == null) {
+          user.updateProfile({
+            displayName: "Newbie",
+            photoURL: "https://lh3.googleusercontent.com/pw/ACtC-3c62Ub_pEImDAGnAMUTc0V1UBj3Zwoyahb57mNbkR05x4aYOob-h-dOQYdnb2mcYe8XCO1C43JpeFKzKjykj_WS8z_4AUvYkactJmq_rsZq4O6SxvO-VQH48o39GgCDtHzks-cwE84_6IDqCk0BqdfA=s903-no?authuser=0"
+          }).then(function() {
+            
+          }).catch(function(error) {
+            
+          });
+        }
+        
         
         
 
