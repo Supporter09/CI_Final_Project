@@ -58,7 +58,7 @@ export default class RegisterForm extends HTMLElement {
             // console.log(this.$email.value());
             let email = this.$email.value();
             let nickname = this.$nickname.value();
-            let name = this.$password.value();
+            let name = this.$name.value();
             let password = this.$password.value();
             let passwordConfirmation = this.$passwordConfirmation.value();
             // if (email == '') {
@@ -77,17 +77,21 @@ export default class RegisterForm extends HTMLElement {
                 (InputWrapper.checkForm(this.$passwordConfirmation, (value) => value != '', 'Nhap lai xac nhan mat khau') &&
                     InputWrapper.checkForm(this.$passwordConfirmation, (value) => value == password, 'Mat khau xac nhan khong chinh xac'))
 
-            console.log(isPassed)
+            
             if (isPassed) {
                 console.log(email)
                 console.log(password)
+                var num = Math.floor(Math.random() * 9999999999999999);
                 firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
                     firebase.firestore().collection('users').add({
-                        id: CryptoJS.MD5(password).toString(),
+                        id: num,
                         nickname: nickname,
                         name: name,
                         email: email,
                         password: CryptoJS.MD5(password).toString(),
+                        linkFb: '',
+                        linkTwitter: '',
+                        linkVk: '',
                         avatar: "https://lh3.googleusercontent.com/pw/ACtC-3c62Ub_pEImDAGnAMUTc0V1UBj3Zwoyahb57mNbkR05x4aYOob-h-dOQYdnb2mcYe8XCO1C43JpeFKzKjykj_WS8z_4AUvYkactJmq_rsZq4O6SxvO-VQH48o39GgCDtHzks-cwE84_6IDqCk0BqdfA=s903-no?authuser=0"
                     }).catch(function (error) {
                         // Handle Errors here.

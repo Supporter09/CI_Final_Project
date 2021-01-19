@@ -66,7 +66,7 @@ export default class NavbarOnTop extends HTMLElement {
         // User is signed in.
         console.log('user sign in')
         var user = firebase.auth().currentUser;
-        var name, email, photoUrl, uid, emailVerified;
+        var id, name, email, photoUrl, uid, emailVerified;
         var image = document.createElement('img')
         if (user != null) {
           name = user.displayName;
@@ -84,6 +84,7 @@ export default class NavbarOnTop extends HTMLElement {
           this.$sign_in_btn.setAttribute('src','#')
           this.$user_avatar.setAttribute('src',photoUrl)
           this.$greeting.innerHTML  = "Hello, " + name + " !"
+          localStorage.setItem('email', email);
         }
         if (user.displayName == null && user.photoURL == null) {
           user.updateProfile({

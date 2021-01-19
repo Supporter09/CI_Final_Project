@@ -1,6 +1,7 @@
 import InputComponent from "./InputComponent.js";
 import {getDataFromDoc, getDataFromDocs} from "../utils.js";
 
+
 const $template = document.createElement('template')
 $template.innerHTML = /*html*/ `
         <style>
@@ -43,6 +44,7 @@ export default class ProfileManager extends HTMLElement{
     }
 
     async connectedCallback() {
+        let email = localStorage.getItem('email');
         this.personalProfile();
         this.newPassword = this.$newPassword.value();
         this.$profileForm.onsubmit = async (event) => {
@@ -51,12 +53,17 @@ export default class ProfileManager extends HTMLElement{
             & InputComponent.validate(this.$confirmNewPassword, (value) => value != '', 'Xác nhận mật khẩu mới không được trống'))
 
             if(notNull) {
+                let rawuserData = await firebase.firestore().collection("users").where("email", "==", email).get();
+                    console.log(rawuserData);
+                let realdata = getDataFromDocs(rawuserData.docs);
+                let id = realdata[0].id;
+                console.log(id);
                 let checkEqual = InputComponent.validate(this.$confirmNewPassword, (value) => value == this.$newPassword.value(), 'Mật khẩu mới và xác nhận mật khẩu không trùng nhau');
                 if(checkEqual == true) {
                     this.$confirmNewPassword.error('Đổi mật khẩu thành công');
                     let result = this.$confirmNewPassword.colorError();
                     console.log(result);
-                    firebase.firestore().collection('users').doc('JpgvpL0EetidNHoVXATz').update({
+                    firebase.firestore().collection('users').doc(id).update({
                         password: CryptoJS.MD5(this.$confirmNewPassword.value()).toString()
                     });
                 }
@@ -66,10 +73,13 @@ export default class ProfileManager extends HTMLElement{
     }
 
     async personalProfile() {
-        let rawuserData = await firebase.firestore().collection("users").where("email", "==", "hieu@gmail.com").get();
+        let email = localStorage.getItem('email');
+        let encodedPass = localStorage.getItem('pass');
+        let rawuserData = await firebase.firestore().collection("users").where("email", "==", email).get();
+        console.log(rawuserData);
         let realdata = getDataFromDocs(rawuserData.docs);
         let label_arr = ["Name", "Nickname", "E-mail", "Primary Password"];
-        let realdata_arr = [realdata[0].name, realdata[0].nickname, realdata[0].email, ''];
+        let realdata_arr = [realdata[0].name, realdata[0].nickname, realdata[0].email, encodedPass];
         
         for(let i =0; i < realdata_arr.length; i++) {
             let $inputComponent = new InputComponent(realdata_arr[i], label_arr[i]);

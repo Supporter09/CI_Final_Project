@@ -149,6 +149,7 @@ export default class StatisticData extends HTMLElement {
     }
 
     async checkPlusButton(link, sign) {
+        var email = localStorage.getItem('email');
         var fb = '';
         var twitter = '';
         var vk = '';
@@ -166,8 +167,9 @@ export default class StatisticData extends HTMLElement {
                 break;
             }
 
-            let result = await firebase.firestore().collection('users').where('email', '==', 'hieu@gmail.com').get();
+            let result = await firebase.firestore().collection('users').where('email', '==', email).get();
             let realdata = getDataFromDocs(result.docs);
+            let id = realdata[0].id;
             let links = [realdata[0].linkFb, realdata[0].linkTwitter, realdata[0].linkVk];
             console.log(realdata[0].linkFb);
             if(links[0] == fb || fb == ''){
@@ -182,7 +184,7 @@ export default class StatisticData extends HTMLElement {
                 vk = links[2];
             }
             this.$plusLink.style.fontWeight = 'bold';
-            firebase.firestore().collection('users').doc('JpgvpL0EetidNHoVXATz').update({
+            firebase.firestore().collection('users').doc(id).update({
                 linkFb: fb,
                 linkTwitter: twitter,
                 linkVk: vk

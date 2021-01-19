@@ -26,7 +26,7 @@ $template.innerHTML= /*html*/ `
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
     <div class="avatar-container shadow-none p-3 bg-grey rounded" style="opacity: 0.9;">
-        <img id="avatar" width="300" height="100" src="" class="avatar">
+        <img id="avatar" width="300" height="100" src="" class="avatar" style="border-radius: 50%;">
         
     </div>
     <div class="input-avatar-container">
@@ -38,12 +38,14 @@ $template.innerHTML= /*html*/ `
 `;
 
 export default class UserAvatar extends HTMLElement {
-    constructor() {
+    constructor(label, avatar) {
         super();
         this.attachShadow({mode: 'open'});
         this.shadowRoot.appendChild($template.content.cloneNode(true));
         this.$avatar = this.shadowRoot.getElementById('avatar');
         this.$avatarLabel = this.shadowRoot.getElementById('avatar-label');
+        this.setAttribute('label', label);
+        this.setAttribute('avatar', avatar);
     }
     static get observedAttributes () {
         return ['avatar', 'label'];
@@ -56,6 +58,10 @@ export default class UserAvatar extends HTMLElement {
         }else if(attrName == 'label'){
             this.$avatarLabel.innerHTML = newValue;
         }
+    }
+
+    changeAvatar() {
+        return this.$avatar.src;
     }
 }
 
