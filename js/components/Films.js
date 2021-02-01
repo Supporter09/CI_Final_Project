@@ -1,5 +1,3 @@
-import Footer from "./Footer.js";
-import NavbarOnTop from "./Navbar.js";
 import SearchBar from "./SearchBar.js";
 import { keyword } from "./SearchBar.js";
 const $template = document.createElement("template");

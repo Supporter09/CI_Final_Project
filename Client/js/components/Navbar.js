@@ -38,7 +38,7 @@ export default class NavbarOnTop extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({
-      mode: "open"
+      mode: "open",
     });
     this.shadowRoot.appendChild($templateNavbar.content.cloneNode(true));
     this.$sign_in_btn = this.shadowRoot.getElementById("login-btn");
@@ -54,20 +54,20 @@ export default class NavbarOnTop extends HTMLElement {
       this.$news.style.opacity = "0";
       this.$news.style.cursor = "default";
       alert("Chức năng đang thử nghiệm😁");
-    }
+    };
 
     this.$more.onclick = () => {
       this.$more.style.opacity = "0";
       this.$more.style.cursor = "default";
       alert("Chức năng đang thử nghiệm😁");
-    }
+    };
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in.
-        console.log('user sign in')
+        console.log("user sign in");
         var user = firebase.auth().currentUser;
         var id, name, email, photoUrl, uid, emailVerified;
-        var image = document.createElement('img')
+        var image = document.createElement("img");
         if (user != null) {
           name = user.displayName;
           email = user.email;
@@ -76,50 +76,53 @@ export default class NavbarOnTop extends HTMLElement {
           uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
           // this value to authenticate with your backend server, if
           // you have one. Use User.getToken() instead.
-          console.log(name,"  ",email,"  ",uid,"  ",photoUrl )
+          console.log(name, "  ", email, "  ", uid, "  ", photoUrl);
           // image.setAttribute('src',photoUrl);
           // this.$navbar.appendChild(image);
           this.$user_avatar.style.display = "block";
-          this.$log_out_btn.style.display= "block";
-          this.$sign_in_btn.style.display = "none"
+          this.$log_out_btn.style.display = "block";
+          this.$sign_in_btn.style.display = "none";
           // this.$sign_in_btn.innerHTML = "Sign Out"
           // this.$sign_in_btn.setAttribute('src','#')
-          this.$user_avatar.setAttribute('src',photoUrl)
-          this.$greeting.innerHTML  = "Hello, " + name + " !"
-          localStorage.setItem('email', email);
+          this.$user_avatar.setAttribute("src", photoUrl);
+          this.$greeting.innerHTML = "Hello, " + name + " !";
+          localStorage.setItem("email", email);
         }
         if (user.displayName == null && user.photoURL == null) {
-          user.updateProfile({
-            displayName: "Newbie",
-            photoURL: "https://lh3.googleusercontent.com/pw/ACtC-3c62Ub_pEImDAGnAMUTc0V1UBj3Zwoyahb57mNbkR05x4aYOob-h-dOQYdnb2mcYe8XCO1C43JpeFKzKjykj_WS8z_4AUvYkactJmq_rsZq4O6SxvO-VQH48o39GgCDtHzks-cwE84_6IDqCk0BqdfA=s903-no?authuser=0"
-          }).then(function() {
-            
-          }).catch(function(error) {
-            
-          });
+          user
+            .updateProfile({
+              displayName: "Newbie",
+              photoURL:
+                "https://lh3.googleusercontent.com/pw/ACtC-3c62Ub_pEImDAGnAMUTc0V1UBj3Zwoyahb57mNbkR05x4aYOob-h-dOQYdnb2mcYe8XCO1C43JpeFKzKjykj_WS8z_4AUvYkactJmq_rsZq4O6SxvO-VQH48o39GgCDtHzks-cwE84_6IDqCk0BqdfA=s903-no?authuser=0",
+            })
+            .then(function () {})
+            .catch(function (error) {});
         }
-        
-        
-        this.$log_out_btn.addEventListener('click',()=>{
-          firebase.auth().signOut().then(() => {
-            // Sign-out successful.
-            // alert("you have signed out")
-            console.log("user sign out")
-            window.location.href ="./"
-          }).catch((error) => {
-            // An error happened.
-          });
-        })
-        
 
+        this.$log_out_btn.addEventListener("click", () => {
+          firebase
+            .auth()
+            .signOut()
+            .then(() => {
+              // Sign-out successful.
+              // alert("you have signed out")
+              console.log("user sign out");
+              window.location.href = "./";
+            })
+            .catch((error) => {
+              // An error happened.
+            });
+        });
       } else {
         // No user is signed in.
-        console.log('not sign in')
-        this.$sign_in_btn.style.display ="block";
+        console.log("not sign in");
+        this.$sign_in_btn.style.display = "block";
         this.$user_avatar.style.display = "none";
-        this.$log_out_btn.style.display= "none";
+        this.$log_out_btn.style.display = "none";
       }
     });
+  }
 }
-}
+
+
 window.customElements.define("navbar-filter", NavbarOnTop);
